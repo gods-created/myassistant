@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/favicon.ico">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+    <div class="alert-window d-none w-100 position-fixed m-2">
+        <div class="row w-100">
+            <div class="col-12 col-lg-4 col-md-6">
+                <div class="alert alert-primary text-center fs-6 m-0 p-1" role="alert">
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="d-flex bg-dark align-items-center px-3 py-3 shadow">
+            <a href="/" class="d-flex align-items-center pe-3 text-light text-decoration-none m-0 border-end border-1 border-light">
+              <span class="fs-4">MyAssistant</span>
+            </a>
+            <div class="d-flex w-100 align-items-center justify-content-end">
+                <button class="btn btn-light download-api-docs">
+                    API documentation
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="d-flex flex-wrap bg-dark justify-content-center align-items-center py-3 border-top">
+        <span class="text-light">© <span class="current-year"></span> MyAssistant</span>
+    </footer>
+
+    {% include 'modals/signup.html' %}
+
+    <script src="{% static '/js/jquery.js' %}"></script>
+    <script src="{% static '/js/main.js' %}" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | MyAssistant Admin{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-6">
+            <div class="d-flex align-items-center sidebar-button justify-content-start d-lg-none d-md-none w-100 px-1" style="height: 100vh;">
+                <button class="btn btn-light open-menu border border-dark">
+                    <img class="img-fluid" width="50px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAPElEQVR4nO3WsQkAMAwDQe2/dALuXIVUBnMHGkDdJwBAOUuWNUcAAOBpulplfGQ8AAC/pvNbxkfGA0CaC2n/KuSsP4fKAAAAAElFTkSuQmCC" alt="menu--v1">
+                </button>
+            </div>
+            <div class="d-none d-lg-flex d-md-flex flex-column flex-shrink-0 p-3 text-bg-light shadow w-100 sidebar" style="height: 100vh;">
+                <a href="/" class="d-block w-100 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-5">Hello, <span class="fw-bold">{% if user.fullname  %}{{ user.fullname }}{% else %}{{ user.email }}{% endif %}</span>!</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        {% if application %}
+                            <form class="d-flex flex-column">
+                                <div class="mb-3">
+                                    <label class="fw-bold" for="client_id">Client ID:</label>
+                                    <div class="d-flex">
+                                        <input type="text" name="client_id" disabled value="{{ application.client_id }}" class="form-control me-3">
+                                        <img title="copy" class="copy-button" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/klEQVR4nO3XUQrCQAwE0FxipXhRfz1jEYunGb+EUlLb3U6ypczA4l/JM9NFzbgB6UxmNpBn6wJBb8xvCMYz0BPDhIyzz0Kar3oIxjPKDJO+GSbEemIeZEhXzDNgq2XPO8O6Lt+kbwsrW93EMO/+j5ndgyCbNWPf/Ucx2JhnFcOETISXEjvmcWvGhAwEDBrOGHH338zsdaBmaDx0CANTk1BIJgbRkCwMMiAZGGRBojHIhERiEAGp/W12CQjOCKmNIE60EUZULSeqFiOqlhNVixFVy4mqxYiq5UTVYkTVcqJqRVSr9a8yzraRy0AogSDt0Ub+RdU6a7XQ4Qhii3wBuJ0AhigWdm0AAAAASUVORK5CYII=" alt="copy--v1">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="fw-bold" for="client_id">Client secret:</label>
+                                    <div class="d-flex">
+                                        <input type="password" name="client_id" disabled value="{{ application.client_secret }}" class="form-control me-3">
+                                        <img title="copy" class="copy-button" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/klEQVR4nO3XUQrCQAwE0FxipXhRfz1jEYunGb+EUlLb3U6ypczA4l/JM9NFzbgB6UxmNpBn6wJBb8xvCMYz0BPDhIyzz0Kar3oIxjPKDJO+GSbEemIeZEhXzDNgq2XPO8O6Lt+kbwsrW93EMO/+j5ndgyCbNWPf/Ucx2JhnFcOETISXEjvmcWvGhAwEDBrOGHH338zsdaBmaDx0CANTk1BIJgbRkCwMMiAZGGRBojHIhERiEAGp/W12CQjOCKmNIE60EUZULSeqFiOqlhNVixFVy4mqxYiq5UTVYkTVcqJqRVSr9a8yzraRy0AogSDt0Ub+RdU6a7XQ4Qhii3wBuJ0AhigWdm0AAAAASUVORK5CYII=" alt="copy--v1">
+                                    </div>
+                                </div>
+                            </form>
+                        {% else %}
+                            <form action="/admin/create_application/" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-dark w-100" type="submit">Create Application</button>
+                            </form>
+                        {% endif %}
+                    </li>
+                </ul>
+                <hr>
+                <div class="d-block">
+                    <button class="btn btn-dark close-menu w-100 btn-lg mb-3 d-block d-lg-none d-md-none">
+                        Hide Menu
+                    </button>
+
+                    <form action="/admin/logout_process/" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger w-100 btn-lg" type="submit">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

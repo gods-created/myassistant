@@ -1,0 +1,16 @@
+django
+djangorestframework
+django-cors-headers
+django-oauth-toolkit
+django-silk
+scikit-learn
+celery
+redis
+python-dotenv
+joblib
+numpy
+pandas
+transformers
+torch
+tensorflow
+datasets
