@@ -3,6 +3,7 @@ djangorestframework
 django-cors-headers
 django-oauth-toolkit
 django-silk
+python-ipware
 scikit-learn
 celery
 redis
@@ -11,6 +12,7 @@ joblib
 numpy
 pandas
 transformers
+datasets
+gunicorn
 torch
 tensorflow
-datasets
